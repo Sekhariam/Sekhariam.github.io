@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solagam Chandra Sekhar | AI Data Operations & QA Specialist</title>
+  <meta name="description" content="AI Data Annotator, Evaluator, and QA Specialist supporting US & global engineering teams with precision datasets, model evaluation, and rigorous QA workflows." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #090d16;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --bg-card-hover: rgba(24, 34, 53, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(16, 185, 129, 0.3);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #10b981; /* Precision Emerald */
+      --accent-glow: rgba(16, 185, 129, 0.15);
+      --primary: #38bdf8; /* Data Blue */
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(9, 13, 22, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #052e16;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.4);
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 0 4rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge i { font-size: 0.6rem; animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 1.25rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 40%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Metrics Grid */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .metric-val {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .metric-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Section Global */
+    section {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* Experience Grid */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .exp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border 0.2s, transform 0.2s;
+    }
+    .exp-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    .exp-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.75rem;
+    }
+    .exp-company {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .exp-role {
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .exp-list {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .exp-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .exp-list li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Services Dynamic Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+    .service-card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+    }
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .service-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .service-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: var(--primary);
+    }
+    
+    /* Skills Section */
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .skill-category h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+    }
+    .skill-category h3 i {
+      color: var(--accent);
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.82rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .contact-container { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .contact-item:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+    }
+    .contact-item i {
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(9, 13, 22, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-status {
+      display: none;
+      padding: 0.85rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .form-status.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--accent);
+      color: #34d399;
+    }
+    .form-status.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #f87171;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo"><span></span> Solagam Chandra Sekhar</a>
+      <ul class="nav-links">
+        <li><a href="#experience">Track Record</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Technical Work</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+    </div>
+  </nav>
+
+  <div class="container hero">
+    <div class="badge"><i class="fa-solid fa-circle"></i> Available for Remote US Contracts</div>
+    <h1 class="gradient-text">Precision AI Data Annotation,<br/>Evaluation & QA Operations</h1>
+    <p class="lead">
+      I help AI startups and technology companies scale clean training datasets, perform rigorous human-in-the-loop evaluation, and execute structured QA workflows with strict process compliance.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> Reach Out for Projects</a>
+      <a href="https://linkedin.com/in/chandra-sekhar-iam" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a>
+      <a href="https://github.com/Sekhariam" target="_blank" class="btn btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-val">GlobalLogic</div>
+        <p>Associate Analyst on Tier-1 International Client Operations</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">Mercor & Sovrano</div>
+        <p>AI Data Evaluation & Human-in-the-Loop Pipelines</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">&gt;99% Accuracy</div>
+        <p>SOP-driven data validation, error tracking & quality control</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Enterprise Experience</div>
+        <h2 class="section-title">Verified Production Experience</h2>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-head">
+            <div class="exp-company">GlobalLogic</div>
+            <div class="exp-role">Associate Analyst — Content Engineering</div>
+          </div>
+          <ul class="exp-list">
+            <li>Executed high-volume video and data annotation pipelines for an international technology client.</li>
+            <li>Adhered to complex standard operating procedures (SOPs), escalating edge cases and exception handling.</li>
+            <li>Conducted continuous quality audits and error tracking to maintain enterprise accuracy benchmarks.</li>
+            <li>Partnered within structured remote operational workflows to meet strict delivery quotas.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-head">
+            <div class="exp-company">Mercor</div>
+            <div class="exp-role">AI Data Annotator / Generalist</div>
+          </div>
+          <ul class="exp-list">
+            <li>Evaluated multi-modal model outputs for safety, accuracy, context relevance, and linguistic coherence.</li>
+            <li>Executed structured qualitative rankings and evaluation criteria for advanced generative datasets.</li>
+            <li>Collaborated asynchronously with international cross-functional engineering teams.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-head">
+            <div class="exp-company">Sovrano AI</div>
+            <div class="exp-role">AI Data Project Specialist</div>
+          </div>
+          <ul class="exp-list">
+            <li>Participated in specialized data review workflows for fine-tuning artificial intelligence models.</li>
+            <li>Verified dataset cleanliness and documented systemic discrepancies across structured tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Client Solutions</div>
+        <h2 class="section-title">What I Bring to Your Team</h2>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="filterServices('ai')">AI & Data Operations</button>
+        <button class="tab-btn" onclick="filterServices('qa')">QA & Functional Testing</button>
+        <button class="tab-btn" onclick="filterServices('data')">Data Engineering & SQL</button>
+      </div>
+
+      <div class="service-grid" id="service-container"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Technical Foundation</div>
+        <h2 class="section-title">Selected Software & Vision Projects</h2>
+      </div>
+      <div class="project-grid">
+        <div class="project-card">
+          <div>
+            <h3>RecipeHub Application</h3>
+            <p>Backend service built with a modular architecture, handling relational data persistence and reliable CRUD performance under load.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Javalin</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">H2 Database</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Hospital Management System</h3>
+            <p>Structured record management platform focusing on normalized database architecture, transaction consistency, and data validation.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">JDBC</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Data Schema Design</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Gesture-Based Augmented Interface</h3>
+            <p>Computer vision project exploring spatial interactions, real-time gesture tracking, and frame-by-frame visual analysis.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">OpenCV</span>
+            <span class="tag">ARCore</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Matrix -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Competencies</div>
+        <h2 class="section-title">Skills & Technical Stack</h2>
+      </div>
+
+      <div class="skills-wrapper">
+        <!-- AI & Data Operations -->
+  <!-- AI & Data Operations -->
+        <div class="skill-category">
+          <h3><i class="fa-solid fa-brain"></i> AI & Data Operations</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">AI Data Annotation</span>
+            <span class="skill-pill">RLHF (Human Feedback)</span>
+            <span class="skill-pill">2D/3D Data Labeling</span>
+            <span class="skill-pill">Bounding Box Annotation</span>
+            <span class="skill-pill">Model Output Evaluation</span>
+            <span class="skill-pill">Data Quality Assurance (QA)</span>
+            <span class="skill-pill">Data Validation</span>
+            <span class="skill-pill">Content Moderation & Review</span>
+            <span class="skill-pill">SOP Compliance</span>
+            <span class="skill-pill">Human-in-the-Loop (HITL)</span>
+            <span class="skill-pill">Exception & Error Handling</span>
+          </div>
+        </div>
+        <!-- QA & Testing -->
+        <div class="skill-category">
+          <h3><i class="fa-solid fa-vial-circle-check"></i> QA & Testing</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">Manual Testing</span>
+            <span class="skill-pill">Test Case Design</span>
+            <span class="skill-pill">Bug Logging & Reporting</span>
+            <span class="skill-pill">Selenium WebDriver</span>
+            <span class="skill-pill">API Testing Basics</span>
+            <span class="skill-pill">Cucumber / BDD</span>
+            <span class="skill-pill">Maven</span>
+            <span class="skill-pill">Jenkins & CI Fundamentals</span>
+          </div>
+        </div>
+
+        <!-- Technical & Data Stack -->
+        <div class="skill-category">
+          <h3><i class="fa-solid fa-code"></i> Technical & Data Stack</h3>
+          <div class="skill-pills">
+            <span class="skill-pill">Core Java</span>
+            <span class="skill-pill">SQL & MySQL</span>
+            <span class="skill-pill">JDBC</span>
+            <span class="skill-pill">Advanced MS Excel</span>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Data Cleaning & Transformation</span>
+            <span class="skill-pill">Git & GitHub</span>
+            <span class="skill-pill">OpenCV Basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Direct Availability</div>
+        <h2 class="section-title">Let's Discuss Your Pipeline</h2>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem;">
+            Whether you need a reliable remote data operator to process high-volume labeling batches or a meticulous QA tester for an upcoming release, I am available to plug into your workflow immediately.
+          </p>
+
+          <a href="mailto:itssekhariam@gmail.com" class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Direct Email</div>
+              <div style="font-weight: 600;">itssekhariam@gmail.com</div>
+            </div>
+          </a>
+
+          <a href="https://linkedin.com/in/chandra-sekhar-iam" target="_blank" class="contact-item">
+            <i class="fa-brands fa-linkedin"></i>
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Professional Network</div>
+              <div style="font-weight: 600;">linkedin.com/in/chandra-sekhar-iam</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/Sekhariam" target="_blank" class="contact-item">
+            <i class="fa-brands fa-github"></i>
+            <div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Code & Repositories</div>
+              <div style="font-weight: 600;">github.com/Sekhariam</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Integrated Formspree Form -->
+        <form class="contact-form" id="portfolio-form" action="https://formspree.io/f/xyeyjrlj" method="POST">
+          <div class="form-group">
+            <label for="name">Your Name / Organization</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. Alex Rivera (Tech Lead)" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="_replyto" required placeholder="name@company.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Project Scope & Requirements</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Describe dataset size, annotation types, QA goals, or expected timelines..."></textarea>
+          </div>
+
+          <button type="submit" id="form-submit-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            <i class="fa-solid fa-paper-plane"></i> Send Direct Message
+          </button>
+          <div id="form-status" class="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Solagam Chandra Sekhar. Based in Visakhapatnam, India. Working across US and global time zones.</p>
+    </div>
+  </footer>
+
+  <script>
+    const services = {
+      ai: [
+        { icon: "fa-vector-square", title: "2D/3D Data Annotation", desc: "Bounding boxes, polygonal segmentation, keypoints, and spatial 3D scene evaluation for computer vision pipelines." },
+        { icon: "fa-brain", title: "Model Output Evaluation", desc: "Systematic auditing of LLM outputs for safety, accuracy, instruction-following, and hallucination reduction." },
+        { icon: "fa-list-check", title: "Human-in-the-Loop Workflows", desc: "Structured validation loops and RLHF support operating within defined standard operating procedures (SOPs)." },
+        { icon: "fa-magnifying-glass", title: "Search & Content Relevance", desc: "Rigorous grading of multi-modal search and algorithmic content against objective relevance rubrics." }
+      ],
+      qa: [
+        { icon: "fa-bug", title: "Manual QA & Defect Tracking", desc: "Exploratory and functional testing with detailed reproducible bug logs, screen captures, and environment profiling." },
+        { icon: "fa-clipboard-check", title: "Test Case Execution", desc: "Step-by-step test execution against defined edge cases, acceptance criteria, and regression benchmarks." },
+        { icon: "fa-shield-halved", title: "SOP & Compliance Auditing", desc: "Process-driven verification ensuring web applications and workflows strictly match compliance blueprints." }
+      ],
+      data: [
+        { icon: "fa-table", title: "Advanced Excel Operations", desc: "Large-scale dataset cleaning, outlier isolation, pivot synthesis, and formula-driven data transformation." },
+        { icon: "fa-database", title: "SQL & MySQL Queries", desc: "CRUD operations, relational integrity checks, table extraction, and data preparation for downstream tasks." },
+        { icon: "fa-chart-pie", title: "Power BI & Visualization", desc: "Transforming raw operations data into clear status charts, KPI summaries, and stakeholder dashboards." }
+      ]
+    };
+
+    function filterServices(category) {
+      const container = document.getElementById('service-container');
+      const buttons = document.querySelectorAll('.tab-btn');
+      
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(category));
+      });
+
+      container.innerHTML = services[category].map(s => `
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid ${s.icon}"></i></div>
+          <h3>${s.title}</h3>
+          <p>${s.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    // Initialize first category on page load
+    filterServices('ai');
+
+    // Asynchronous Form Handling with Client Feedback
+    const form = document.getElementById('portfolio-form');
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('form-submit-btn');
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending Inquiry...';
+      status.className = 'form-status';
+      status.style.display = 'none';
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          status.innerHTML = "Thank you! Your message has been sent successfully. I will get back to you shortly.";
+          status.className = 'form-status success';
+          form.reset();
+        } else {
+          const resData = await response.json();
+          if (resData.errors) {
+            status.innerHTML = resData.errors.map(error => error.message).join(", ");
+          } else {
+            status.innerHTML = "Oops! There was an issue submitting your inquiry. Please reach out directly via email.";
+          }
+          status.className = 'form-status error';
+        }
+      } catch (error) {
+        status.innerHTML = "Network error. Please email me directly at itssekhariam@gmail.com";
+        status.className = 'form-status error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Direct Message';
+      }
+    });
+  </script>
+</body>
+</html>
